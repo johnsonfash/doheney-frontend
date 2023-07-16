@@ -1,0 +1,44 @@
+body,
+html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  font-family: "Inter", sans-serif !important;
+  font-family: "Lato", sans-serif !important;
+  font-family: "Montserrat", sans-serif !important;
+  font-family: "Poppins", sans-serif !important;
+}
+
+img {
+  display: inline-block;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.max-w-1 {
+  max-width: 1rem;
+}
+.custom-input {
+  width: 100%;
+  border: 0;
+  font-size: 0.9rem;
+  padding: 0;
+  margin: 0;
+  outline: none;
+}
+.custom-label {
+  height: 1.1rem;
+  line-height: 1;
+  font-size: 1rem;
+}
+.custom-input:focus ~ .custom-label {
+  font-size: 0.7rem;
+  transition: all 0.2s linear;
+}
+.custom-button {
+  background-color: #6940D9;
+  outline: none;
+}
