@@ -39,6 +39,9 @@ img {
   transition: all 0.2s linear;
 }
 .custom-button {
-  background-color: #6940D9;
+  background-color: #6940d9;
   outline: none;
+}
+.custom-button:disabled {
+  opacity: 0.7;
 }

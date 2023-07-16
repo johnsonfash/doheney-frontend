@@ -9,8 +9,8 @@ import Home from "./pages/home";
 function Router() {
   return (
     <Routes>
-      <Route path="/login" element={<Container><Login /></Container>} />
-      <Route path="/register" element={<Container><Register /></Container>} />
+      <Route path="/login" element={<Container authRedirect="/"><Login /></Container>} />
+      <Route path="/register" element={<Container authRedirect="/"><Register /></Container>} />
       <Route path="/" element={<Container authRoute><DashboardLayout /></Container>} >
         <Route index element={<Home />} />
       </Route>

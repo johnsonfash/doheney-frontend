@@ -18,16 +18,18 @@ function GoogleLogin({
   useEffect(() => {
     if (!window.google || !googleRef.current) return;
     try {
-      window.google?.accounts?.id?.initialize({
-        client_id: CONST.GOOGLE_CLIENT_ID,
-        callback: handleCredentialResponse,
-      });
-      window.google?.accounts?.id?.renderButton(googleRef.current, {
-        theme: "outline",
-        size: "large",
-        text: "signin_with",
-        shape: "rectangular"
-      });
+      // disabled due to no gmail account requirements
+
+      // window.google?.accounts?.id?.initialize({
+      //   client_id: CONST.GOOGLE_CLIENT_ID,
+      //   callback: handleCredentialResponse,
+      // });
+      // window.google?.accounts?.id?.renderButton(googleRef.current, {
+      //   theme: "outline",
+      //   size: "large",
+      //   text: "signin_with",
+      //   shape: "rectangular"
+      // });
     } catch (_: any) { }
   }, []);
 

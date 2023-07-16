@@ -8,8 +8,7 @@ import { saveToken } from '../../lib/token'
 export interface AccountData {
   id?: number
   email?: string
-  first_name?: string
-  last_name?: string
+  name?: string
   auth?: 'google' | 'manual'
   created_at?: string
 }
@@ -27,13 +26,13 @@ const initialState: AccountState = {
 
 export const login = createAsyncThunk<API_RESPONSE, any, { state: RootState }>('/account/login', async ({ url, data }: { url: 'google' | 'manual', data: { [key: string]: any } }, { rejectWithValue }) => {
   try {
-    const res = await axios.post(`${CONST.BASE_URL}${url === 'google' ? CONST.GOOGLE_LOGIN_URL : CONST.GOOGLE_LOGIN_URL}`, data, {
+    const res = await axios.post(`${CONST.BASE_URL}${url === 'google' ? CONST.GOOGLE_LOGIN_URL : CONST.MANUAL_LOGIN_URL}`, data, {
       headers: {
         "Content-Type": "application/json",
       },
-    }) as { data: API_RESPONSE<{ user: AccountData, token: string }> };
+    }) as { data: API_RESPONSE<{ user: AccountData, access_token: string }> };
     if (res.data?.status) {
-      saveToken(res.data?.data?.token)
+      saveToken(res.data?.data?.access_token)
       return { data: res.data.data?.user, status: res.data.status }
     } else {
       // can only reject with string message
@@ -70,6 +69,7 @@ export const accountSlice = createSlice({
       state.loading = true
     })
       .addCase(login.fulfilled, (state: AccountState, action: PayloadAction<API_RESPONSE>) => {
+        console.log('payload', action.payload)
         state.loading = false
         state.error = false
         state.message = ''

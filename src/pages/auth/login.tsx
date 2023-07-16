@@ -12,7 +12,7 @@ import { login } from "../../store/slice/account";
 const Login = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState({ status: false, message: '' })
-  const [password, setPassword] = useState(false);
+  const [password, setPassword] = useState(true);
   const dispatch = useAppDispatch();
   const route = useNavigate();
   const from = useSearchParams()[0].get('from');
@@ -29,6 +29,7 @@ const Login = () => {
     } catch (err: any) {
       setError({ status: true, message: err?.message ?? err })
     }
+    setLoading(false)
   }
 
   return (
@@ -61,8 +62,8 @@ const Login = () => {
               <input disabled={loading} name='email' type="email" required className="custom-input" placeholder="you@mail.com" />
               <label htmlFor="email" className="custom-label text-muted">Email address</label>
             </div>
-            <div className={`${error.status && 'border-danger'} d-flex mt-4 align-items-center position-relative w-100`}>
-              <div className="border w-100 d-flex flex-column flex-column-reverse pt-3 rounded-2 px-2 pt-2 pb-1">
+            <div className='d-flex mt-4 align-items-center position-relative w-100'>
+              <div className={`${error.status && 'border-danger'} border w-100 d-flex flex-column flex-column-reverse pt-3 rounded-2 px-2 pt-2 pb-1`}>
                 <input required disabled={loading} name='password' type={password ? 'password' : 'text'} className="custom-input" placeholder="********" />
                 <label htmlFor="email" className="my-0 custom-label text-muted">Password</label>
               </div>
@@ -79,7 +80,7 @@ const Login = () => {
               Login
             </button>
             <div className="my-3 text-center">
-              <small>Need to create an account? <Link to='' className="text-decoration-none opacity-50">Sign Up</Link></small>
+              <small>Need to create an account? <Link to='/register' className="text-decoration-none opacity-50">Sign Up</Link></small>
             </div>
           </form>
         </div>
