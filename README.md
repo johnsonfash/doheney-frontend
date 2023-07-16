@@ -25,4 +25,5 @@ Database has been created and seeded with preexisiting credentials below
     }
 ```
 
+Public url: https://tosin-fashanu-doheney.vercel.app/
 You must have node installed on your local device. This loads the app on `https://localhost:3000`
