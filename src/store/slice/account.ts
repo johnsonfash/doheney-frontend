@@ -58,6 +58,8 @@ export const accountSlice = createSlice({
   initialState,
   reducers: {
     updateAccount: (state: AccountState, action: PayloadAction<AccountState>) => {
+      console.log('me - payload', action.payload)
+
       state.data = action.payload.data || state.data
       state.loading = action.payload.loading || false
       state.error = action.payload.error || false

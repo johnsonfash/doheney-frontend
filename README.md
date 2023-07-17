@@ -1,6 +1,6 @@
 # Doheney
-[https://tosin-fashanu-doheney.vercel.app/](https://tosin-fashanu-doheney.vercel.app/)
 
+[https://tosin-fashanu-doheney.vercel.app/](https://tosin-fashanu-doheney.vercel.app/)
 
 ## Local Setup
 
@@ -8,6 +8,7 @@
 npm i
 npm run dev
 ```
+
 Database has been created and seeded with preexisiting credentials below
 
 ```sh

@@ -20,3 +20,7 @@ export const saveToken = (jwt?: string) => {
     Cookies.set(CONST.ACCESS_TOKEN, jwt);
   }
 }
+
+export const getToken = () => {
+  return Cookies.get(CONST.ACCESS_TOKEN) as string ?? '';
+}

@@ -1,5 +1,6 @@
 import axios from "axios"
 import { AppDispatch } from "../store"
+import { getToken } from "./token";
 
 const baseUrl = 'https://6270020422c706a0ae70b72c.mockapi.io/lendsqr/api/v1';
 export interface DefaultAxiosResponse {
@@ -12,8 +13,8 @@ export interface DefaultAxiosResponse {
 
 export interface AnyReduxState<T> {
   error?: boolean
-  errorMessage?: string
-  loading?: 'true' | 'false' | 'done'
+  message?: string | null
+  loading?: boolean
   data?: T | null
 }
 
@@ -22,22 +23,25 @@ const reduxRequest = <T>(method: 'post' | 'get' | 'delete' | 'put' | 'patch' = '
   type: string;
 }) => async (dispatch: AppDispatch) => {
   try {
-    dispatch(reduxAction({ loading: "true" }));
+    dispatch(reduxAction({ loading: true }));
     const res = await axios({
       method: method,
       url: baseUrl + url,
       data: data,
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + getToken()
       }
     });
-    if (res.data) {
-      dispatch(reduxAction({ loading: "done", error: false, data: res.data }));
+    console.log('backend res - ', res)
+    if (res.data.status) {
+      dispatch(reduxAction({ loading: false, error: false, data: res.data.data }));
     } else {
-      dispatch(reduxAction({ loading: "done", error: true, errorMessage: 'Request failed' }));
+      dispatch(reduxAction({ loading: false, error: true, message: 'Request failed' }));
     }
   } catch (e: any) {
-    dispatch(reduxAction({ loading: "done", error: true, errorMessage: e?.response?.data?.message || e.message }));
+    console.log('backend err - ', e)
+    dispatch(reduxAction({ loading: false, error: true, message: e?.response?.data?.message || e.message }));
   }
 }
 

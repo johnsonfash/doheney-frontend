@@ -59,13 +59,13 @@ const Login = () => {
               </div>
             </div>
             <div className={`${error.status && 'border-danger'} border d-flex flex-column flex-column-reverse pt-3 rounded-2 my-2 px-2 pt-2 pb-1`}>
-              <input disabled={loading} name='email' type="email" required className="custom-input" placeholder="you@mail.com" />
-              <label htmlFor="email" className="custom-label text-muted">Email address</label>
+              <input disabled={loading} name='email' id='email' type="email" required className="custom-input" placeholder="you@mail.com" />
+              <label htmlFor="email" className="custom-label text-muted w-100">Email address</label>
             </div>
             <div className='d-flex mt-4 align-items-center position-relative w-100'>
               <div className={`${error.status && 'border-danger'} border w-100 d-flex flex-column flex-column-reverse pt-3 rounded-2 px-2 pt-2 pb-1`}>
-                <input required disabled={loading} name='password' type={password ? 'password' : 'text'} className="custom-input" placeholder="********" />
-                <label htmlFor="email" className="my-0 custom-label text-muted">Password</label>
+                <input required disabled={loading} id='password' name='password' type={password ? 'password' : 'text'} className="custom-input pe-5" placeholder="********" />
+                <label htmlFor="password" className="my-0 custom-label text-muted w-100">Password</label>
               </div>
               <span onClick={() => setPassword(!password)} className="d-inline-block end-0 pe-2 text-muted position-absolute"><FontAwesomeIcon icon={faEye} /></span>
             </div>
